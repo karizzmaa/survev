@@ -807,9 +807,9 @@ export const Main: MapDef = {
                 crate_03: 0,
                 bush_01: 0,
                 cache_06: 0,
-                tree_01: 10,
-                tree_13: 5,
-                hedgehog_01: 6,     // frozen tank traps / ice formations
+                tree_01: 0,
+                tree_13: 0,
+                hedgehog_01: 0,     // frozen tank traps / ice formations
                 container_01: 0,
                 container_02: 0,
                 container_03: 0,
@@ -844,10 +844,10 @@ export const Main: MapDef = {
                 bunker_structure_04: 0,
                 bunker_structure_05: 0,
                 warehouse_complex_01: 0,
-                chest_01: 7,
+                chest_01: 0,
                 chest_03: { odds: 0 },
                 mil_crate_02: { odds: 0 },
-                tree_02: 15,
+                tree_02: 0,
                 teahouse_complex_01su: {
                     small: 0,
                     large: 0,
