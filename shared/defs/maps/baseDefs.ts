@@ -722,8 +722,8 @@ export const Main: MapDef = {
     },
     mapGen: {
         map: {
-            baseWidth: 40,
-            baseHeight: 40,
+            baseWidth: 50,
+            baseHeight: 50,
             scale: { small: 1.1875, large: 1.28125 },
             extension: 112,
             shoreInset: 48,
@@ -823,7 +823,7 @@ export const Main: MapDef = {
         fixedSpawns: [
             {
                 // small is spawn count for solos and duos, large is spawn count for squads
-                warehouse_01: { small: -, large: 0 },
+                warehouse_01: { small: 1, large: 1 },
                 warehouse_03: 0,
                 house_red_01: { small: 0, large: 0 },
                 house_red_02: { small: 0, large: 0 },
