@@ -30,8 +30,8 @@ export function getConfig(isProduction: boolean, dir: string) {
         proxies: {},
         modes: [
             { mapName: "main", teamMode: TeamMode.Solo, enabled: true },
-            { mapName: "main", teamMode: TeamMode.Duo, enabled: true },
-            { mapName: "main", teamMode: TeamMode.Squad, enabled: true },
+            { mapName: "main", teamMode: TeamMode.Duo, enabled: false },
+            { mapName: "main", teamMode: TeamMode.Squad, enabled: false },
         ],
         clientTheme: "main",
         gameTps: 100,
