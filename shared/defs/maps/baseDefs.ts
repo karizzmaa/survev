@@ -852,7 +852,7 @@ export const Main: MapDef = {
                     small: 0,
                     large: 0,
                 },
-                stone_04: 15,
+                stone_04: 0,
             },
         ],
         randomSpawns: [
