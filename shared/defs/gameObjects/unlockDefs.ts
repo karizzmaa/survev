@@ -56,6 +56,7 @@ const _allowedOutfits = [
     "outfitCamo",
     "outfitRed",
     "outfitWhite",
+    "awc",
 ];
 const _allowedEmotes = [
     "emote_thumbsup",
