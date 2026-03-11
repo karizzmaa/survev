@@ -790,9 +790,9 @@ export const Main: MapDef = {
             locationSpawns: [
                 {
                     type: "club_complex_01",
-                    pos: v2.create(0.5, 0.5),
-                    rad: 150,
-                    retryOnFailure: true,
+                    pos: v2.create(0, 0),
+                    rad: 0,
+                    retryOnFailure: false,
                 },
             ],
             placeSpawns: ["warehouse_01", "house_red_01", "house_red_02", "barn_01"],
