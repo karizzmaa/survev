@@ -764,6 +764,14 @@ biome: {
                 name: "ng0d sucks",
                 pos: v2.create(0.25, 0.42),
             },
+                        {
+                name: "w anh",
+                pos: v2.create(0.4, 0.21),
+            },
+                        {
+                name: "larry pro dev",
+                pos: v2.create(0.2, 0.425),
+            },
             {
                 name: "fuck cvzqti",
                 pos: v2.create(0.81, 0.85),
