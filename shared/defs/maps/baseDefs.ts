@@ -14,9 +14,9 @@ import { MapId } from "../types/misc";
 export const Main: MapDef = {
     mapId: MapId.Main,
     desc: {
-        name: "Normal",
+        name: "Snow Duel (1v1)",
         icon: "",
-        buttonCss: "",
+        buttonCss: "snow",
         backgroundImg: "img/main_splash.png",
     },
     assets: {
