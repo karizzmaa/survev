@@ -1397,13 +1397,17 @@ export class Player extends BaseGameObject {
             );
         }
 
-        for (let i = 0; i < GameConfig.WeaponSlot.Count; i++) {
-            const weap = defaultItems.weapons[i];
-            let type = weap.type || this.weapons[i].type;
-            if (!type) continue;
-            assertType(type, GameConfig.WeaponType[i], true);
-            this.weaponManager.setWeapon(i, type, weap.ammo ?? 0);
-        }
+for (let i = 0; i < GameConfig.WeaponSlot.Count; i++) {
+    const weap = defaultItems.weapons[i];
+    let type = weap.type || this.weapons[i].type;
+    if (!type) continue;
+    assertType(type, GameConfig.WeaponType[i], true);
+    this.weaponManager.setWeapon(i, type, weap.ammo ?? 0);
+}
+
+// Spawn with mosin in both primary and secondary
+this.weaponManager.setWeapon(GameConfig.WeaponSlot.Primary, "mosin", 5);
+this.weaponManager.setWeapon(GameConfig.WeaponSlot.Secondary, "mosin", 5);
 
         this.chest = defaultItems.chest;
         assertType(this.chest, "chest", true);
