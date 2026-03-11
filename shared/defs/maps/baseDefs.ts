@@ -29,17 +29,17 @@ export const Main: MapDef = {
         ],
         atlases: ["gradient", "loadout", "shared", "main"],
     },
-    biome: {
-        colors: {
-            background: 0x0d1a2e,   // deep navy night sky
-            water: 0x1a3a5c,        // dark icy water
-            waterRipple: 0xa8d8f0,  // pale frost ripple
-            beach: 0xc8d8e8,        // snow-dusted shore
-            riverbank: 0x6a7a8a,    // frozen riverbank stone
-            grass: 0xd0dde8,        // snow-covered ground
-            underground: 0x05080f,  // pitch black underground
-            playerSubmerge: 0x1a3a5c,
-            playerGhillie: 0xcfd9e3, // winter ghillie
+biome: {
+    colors: {
+        background: 0x081021,   // almost black navy sky
+        water: 0x0f2236,        // deep shadowed water
+        waterRipple: 0x416d8c,  // dim icy ripple
+        beach: 0x28323d,        // muted snowy shore
+        riverbank: 0x3b4b5b,    // dark frosted stone
+        grass: 0x2e3a4a,        // shadowed snow-covered ground
+        underground: 0x010205,  // absolute black
+        playerSubmerge: 0x0f2236,
+        playerGhillie: 0x4a5b6a   // subdued winter ghillie
         },
         valueAdjust: 0.9,
         sound: { riverShore: "sand" },
