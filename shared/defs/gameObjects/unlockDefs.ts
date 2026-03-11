@@ -374,15 +374,14 @@ export const UnlockDefs: Record<UnlockDefKey, UnlockDef> = {
             "emote_logocloud",
             "emote_logotwins",
 
-            ...new Set([
-                ...allowedOutfits,
-                ...allowedMeleeSkins,
-                ...allowedEmotes,
-                ...allowedHealEffects,
-                ...Object.keys(CrosshairDefs),
-                ...PassDefs.pass_survivr1.items.map((item) => item.item),
-            ]),
-            
+...new Set([
+    ..._allowedOutfits,
+    ..._allowedMeleeSkins,
+    ..._allowedEmotes,
+    ..._allowedHealEffects,
+    ...Object.keys(CrosshairDefs),
+    ...PassDefs.pass_survivr1.items.map((item) => item.item),
+]),            
         ],
     },
     unlock_new_account: {
