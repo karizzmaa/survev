@@ -25,6 +25,7 @@ export interface MeleeDef {
     anim: {
         idlePose: string;
         attackAnims: string[];
+        deploy?: string;
     };
     sound: Record<string, string>;
     //  {
@@ -69,6 +70,7 @@ export interface MeleeDef {
 export interface Img {
     sprite: string;
     pos: Vec2;
+    deployPos?: Vec2;
     rot: number;
     scale: Vec2;
     tint: number;
@@ -198,6 +200,7 @@ const BaseDefs: Record<string, MeleeDef> = {
         anim: {
             idlePose: "slash",
             attackAnims: ["slash", "fists"],
+            deploy: "spin",
         },
         sound: {
             pickup: "frag_pickup_01",
@@ -219,6 +222,10 @@ const BaseDefs: Record<string, MeleeDef> = {
             pos: {
                 x: 15.5,
                 y: -5,
+            },
+            deployPos: {
+                x: 32,
+                y: 0,
             },
             rot: 0.5 * Math.PI,
             scale: {
@@ -1038,6 +1045,7 @@ const BaseDefs: Record<string, MeleeDef> = {
         switchDelay: 0.25,
         damage: 33,
         obstacleDamage: 1.4,
+        noPotatoSwap: true,
         attack: {
             offset: {
                 x: 1.25,
@@ -1057,11 +1065,11 @@ const BaseDefs: Record<string, MeleeDef> = {
         sound: {
             pickup: "frag_pickup_01",
             swing: "knife_swing_01",
-            deploy: "stow_weapon_01",
+            deploy: "frag_pickup_01",
             playerHit: "crowbar_hit_01",
         },
         lootImg: {
-            sprite: "loot-melee-crowbar.img",
+            sprite: "loot-melee-crowbar-scout.img",
             tint: 0xffffff,
             border: "loot-circle-outer-02.img",
             borderTint: 0xffffff,
@@ -1069,7 +1077,7 @@ const BaseDefs: Record<string, MeleeDef> = {
             rot: 0.785,
         },
         worldImg: {
-            sprite: "loot-melee-crowbar.img",
+            sprite: "loot-melee-crowbar-scout.img",
             pos: {
                 x: -1,
                 y: -10,
@@ -1329,13 +1337,11 @@ const SkinDefs: Record<string, MeleeDef> = {
     }),
     crowbar_scout: defineMeleeSkin("crowbar", {
         name: "Scouting Crowbar",
-        lootImg: { sprite: "loot-melee-crowbar-scout.img" },
-        worldImg: {
-            sprite: "loot-melee-crowbar-scout.img",
-        },
+        noPotatoSwap: false,
     }),
     crowbar_recon: defineMeleeSkin("crowbar", {
         name: "Crowbar Carbon",
+        noPotatoSwap: false,
         lootImg: { sprite: "loot-melee-crowbar-recon.img" },
         worldImg: {
             sprite: "loot-melee-crowbar-recon.img",
