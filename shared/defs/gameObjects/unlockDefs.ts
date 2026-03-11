@@ -14,6 +14,7 @@ const _allowedMeleeSkins = [
     "huntsman_burnished",
     "bowie_vintage",
     "bowie_frontier",
+    "sledgehammer",
 ];
 const _allowedOutfits = [
     "outfitBase",
@@ -374,6 +375,7 @@ export const UnlockDefs: Record<UnlockDefKey, UnlockDef> = {
             "emote_logocloud",
             "emote_logotwins",
             "karambit_drowned"
+            "sledgehammer"
 
 
         ],
