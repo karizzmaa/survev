@@ -138,12 +138,12 @@ export class WeaponManager {
         const nextWeapon = this.weapons[idx];
         let effectiveSwitchDelay = 0;
 
+        const nextWeaponDef = GameObjectDefs[this.weapons[idx].type] as
+            | GunDef
+            | MeleeDef
+            | ThrowableDef;
         if (curWeapon.type && nextWeapon.type && changeCooldown) {
             // ensure that player is still holding both weapons (didnt drop one)
-            const nextWeaponDef = GameObjectDefs[this.weapons[idx].type] as
-                | GunDef
-                | MeleeDef
-                | ThrowableDef;
 
             const swappingToGun = nextWeaponDef.type == "gun";
 
@@ -193,6 +193,10 @@ export class WeaponManager {
 
         if (idx === this.curWeapIdx && WeaponSlot[idx] == "gun") {
             this.offHand = false;
+        }
+
+        if (nextWeaponDef.type === "melee" && nextWeaponDef.anim.deploy) {
+            this.player.playAnim(GameConfig.Anim.DeployMelee, 1);
         }
 
         this.player.setDirty();
@@ -777,7 +781,6 @@ export class WeaponManager {
         const hasExplosive = this.player.hasPerk("explosive");
         const hasSplinter = this.player.hasPerk("splinter");
         const hasApRounds = this.player.hasPerk("ap_rounds");
-        const hasHighVelocity = this.player.hasPerk("high_velocity");
         const shouldApplyChambered =
             this.player.hasPerk("chambered") &&
             itemDef.ammo !== "12gauge" &&
@@ -815,17 +818,9 @@ export class WeaponManager {
 
         let bulletType = itemDef.bulletType;
 
-        let speedMult = 1;
-        let distanceMult = 1;
         if (itemDef.ammo == "9mm" && this.player.hasPerk("bonus_9mm")) {
+            bulletType = itemDef.bulletTypeBonus ?? bulletType;
             spread *= PerkProperties.bonus_9mm.spreadMul;
-            speedMult = PerkProperties.bonus_9mm.speedMult;
-            distanceMult = PerkProperties.bonus_9mm.distanceMult;
-        }
-
-        if (this.player.hasPerk("high_velocity")) {
-            speedMult *= PerkProperties.high_velocity.speedMult;
-            distanceMult *= PerkProperties.high_velocity.distanceMult;
         }
 
         const bulletCount = itemDef.bulletCount;
@@ -880,8 +875,6 @@ export class WeaponManager {
                 distance,
                 clipDistance: itemDef.toMouseHit,
                 damageMult,
-                speedMult,
-                distanceMult,
                 shotFx: i === 0,
                 shotOffhand: offHand,
                 trailSaturated: shouldApplyChambered || saturated,
@@ -890,7 +883,6 @@ export class WeaponManager {
                 reflectCount: 0,
                 splinter: hasSplinter,
                 apRounds: hasApRounds,
-                highVelocity: hasHighVelocity,
                 lastShot: weapon.ammo <= 0,
                 reflectObjId: this.player.obstacleOutfit?.__id,
                 onHitFx: hasExplosive ? "explosion_rounds" : undefined,
