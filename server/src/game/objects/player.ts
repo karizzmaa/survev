@@ -801,11 +801,11 @@ export class Player extends BaseGameObject {
     }
 
     /** "backpack00" is no backpack, "backpack03" is the max level backpack */
-    backpack: backpack03;
+    backpack: string;
     /** "" is no helmet, "helmet03" is the max level helmet */
-    helmet: helmet03;
+    helmet: string;
     /** "" is no chest, "chest03" is the max level chest */
-    chest: chest03;
+    chest: string;
 
     getGearLevel(type: string): number {
         if (!type) {
@@ -1397,17 +1397,13 @@ export class Player extends BaseGameObject {
             );
         }
 
-for (let i = 0; i < GameConfig.WeaponSlot.Count; i++) {
-    const weap = defaultItems.weapons[i];
-    let type = weap.type || this.weapons[i].type;
-    if (!type) continue;
-    assertType(type, GameConfig.WeaponType[i], true);
-    this.weaponManager.setWeapon(i, type, weap.ammo ?? 0);
-}
-
-// Spawn with mosin in both primary and secondary
-this.weaponManager.setWeapon(GameConfig.WeaponSlot.Primary, "spas", 9);
-this.weaponManager.setWeapon(GameConfig.WeaponSlot.Secondary, "mosin", 5);
+        for (let i = 0; i < GameConfig.WeaponSlot.Count; i++) {
+            const weap = defaultItems.weapons[i];
+            let type = weap.type || this.weapons[i].type;
+            if (!type) continue;
+            assertType(type, GameConfig.WeaponType[i], true);
+            this.weaponManager.setWeapon(i, type, weap.ammo ?? 0);
+        }
 
         this.chest = defaultItems.chest;
         assertType(this.chest, "chest", true);
