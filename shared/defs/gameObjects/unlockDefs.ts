@@ -374,7 +374,7 @@ export const UnlockDefs: Record<UnlockDefKey, UnlockDef> = {
             "emote_flagbosnia",
             "emote_logocloud",
             "emote_logotwins",
-            "karambit_drowned"
+            "karambit_drowned",
             "sledgehammer"
 
 
