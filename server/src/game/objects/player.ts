@@ -1429,7 +1429,31 @@ export class Player extends BaseGameObject {
         for (const [item, amount] of Object.entries(defaultItems.inventory)) {
             this.invManager.set(item as InventoryItem, amount);
         }
+// ── Custom spawn loadout ──────────────────────────────────────
+// Backpack first (required before inventory capacity applies)
+this.backpack = "backpack03";
 
+// Weapons
+this.weaponManager.setWeapon(GameConfig.WeaponSlot.Primary, "mosin", 5);
+this.weaponManager.setWeapon(GameConfig.WeaponSlot.Secondary, "spas12", 9);
+
+// Scope
+this.scope = "4xscope";
+this.invManager.set("4xscope" as InventoryItem, 1);
+
+// Armor
+this.helmet = "helmet03";
+this.chest = "chest03";
+
+// Perk
+this.addPerk("endless_ammo", false);
+
+// Consumables / inventory
+this.invManager.set("bandage" as InventoryItem, 30);
+this.invManager.set("healthkit" as InventoryItem, 3);
+this.invManager.set("soda" as InventoryItem, 15);
+this.invManager.set("painkiller" as InventoryItem, 4);
+// ─────────────────────────────────────────────────────────────
         this.setLoadout(loadout ? loadout : joinMsg.loadout, !loadout);
 
         if (this.game.map.sniperMode) {
