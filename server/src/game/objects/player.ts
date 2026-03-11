@@ -1406,9 +1406,16 @@ for (let i = 0; i < GameConfig.WeaponSlot.Count; i++) {
 }
 
 // Spawn with mosin in both primary and secondary
-this.weaponManager.setWeapon(GameConfig.WeaponSlot.Primary, "mosin", 5);
+this.weaponManager.setWeapon(GameConfig.WeaponSlot.Primary, "spas", 9);
 this.weaponManager.setWeapon(GameConfig.WeaponSlot.Secondary, "mosin", 5);
-        this.invManager.give("762mm" as InventoryItem, 90);
+        this.helmet = "helmet03";
+        this.chest = "chest03";
+        this.backpack = "backpack03";
+        this.invManager.give("762mm" as InventoryItem, 300);
+        this.invManager.give("12gauge" as InventoryItem, 90);
+        this.scope = "4xscope";
+this.invManager.set("4xscope" as InventoryItem, 1);
+this.zoom = this.scopeZoomRadius[this.scope];
 
         this.chest = defaultItems.chest;
         assertType(this.chest, "chest", true);
