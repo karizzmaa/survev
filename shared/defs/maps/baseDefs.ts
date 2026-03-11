@@ -807,8 +807,8 @@ export const Main: MapDef = {
                 crate_03: 0,
                 bush_01: 0,
                 cache_06: 0,
-                tree_01: 0,
-                tree_13: 0,
+                tree_01: 10,
+                tree_13: 5,
                 hedgehog_01: 6,     // frozen tank traps / ice formations
                 container_01: 0,
                 container_02: 0,
@@ -852,7 +852,7 @@ export const Main: MapDef = {
                     small: 0,
                     large: 0,
                 },
-                stone_04: 0,
+                stone_04: 15,
             },
         ],
         randomSpawns: [
