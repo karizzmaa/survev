@@ -753,31 +753,31 @@ export const Main: MapDef = {
                 pos: v2.create(0.53, 0.64),
             },
             {
-                name: "Iceberg",
+                name: "",
                 pos: v2.create(0.84, 0.18),
             },
             {
-                name: "Frostholm",
+                name: "piesimp rules",
                 pos: v2.create(0.15, 0.11),
             },
             {
-                name: "Coldwater",
+                name: "ng0d sucks",
                 pos: v2.create(0.25, 0.42),
             },
             {
-                name: "Whiteout",
+                name: "fuck cvzqti",
                 pos: v2.create(0.81, 0.85),
             },
             {
-                name: "Glacierfield",
+                name: "fuck atul",
                 pos: v2.create(0.21, 0.79),
             },
             {
-                name: "Deadwinter",
+                name: "w saer",
                 pos: v2.create(0.73, 0.47),
             },
             {
-                name: "The Tundra",
+                name: "",
                 pos: v2.create(0.53, 0.25),
             },
         ],
