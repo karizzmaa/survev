@@ -16,7 +16,7 @@ export const Main: MapDef = {
     desc: {
         name: "Snow Duel (1v1)",
         icon: "",
-        buttonCss: "snow",
+        buttonCss: "btn-mode-snow",
         backgroundImg: "img/main_splash.png",
     },
     assets: {
@@ -829,8 +829,8 @@ export const Main: MapDef = {
                 house_red_02: { small: 0, large: 0 },
                 barn_01: { small: 0, large: 0 },
                 barn_02: 0,
-                hut_01: 0,
-                hut_02: 0,
+                hut_01: 1,
+                hut_02: 1,
                 hut_03: 0,
                 shack_03a: 0,
                 shack_03b: { small: 0, large: 0 },
@@ -847,12 +847,12 @@ export const Main: MapDef = {
                 chest_01: 0,
                 chest_03: { odds: 0 },
                 mil_crate_02: { odds: 0 },
-                tree_02: 0,
+                tree_02: 15,
                 teahouse_complex_01su: {
                     small: 0,
                     large: 0,
                 },
-                stone_04: 0,
+                stone_04: 15,
             },
         ],
         randomSpawns: [
