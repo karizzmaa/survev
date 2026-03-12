@@ -5433,10 +5433,10 @@ input [type="image"]:focus {
   cursor: pointer;
   display: inline-block;
   height: 72px;
-  margin-left: 4px;
+  margin-left: 2px;
   margin-top: 44px;
   position: relative;
-  width: 70px;
+  width: 56px;
 }
 
 .modal-customize-cat-image {
@@ -5458,7 +5458,7 @@ input [type="image"]:focus {
   margin: auto;
   opacity: 0;
   position: relative;
-  width: 70px;
+  width: 56px;
 }
 
 .modal-customize-cat-selected {
