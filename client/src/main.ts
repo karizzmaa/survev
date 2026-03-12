@@ -184,6 +184,28 @@ export class Application {
                 const t = this.serverSelect.find(":selected").val();
                 this.config.set("region", t as string);
             });
+
+            // Developer options panel — password gated editor unlock
+            {
+                const inp = $("#dev-pass-input");
+                const btn = $("#dev-pass-btn");
+                const status = $("#dev-pass-status");
+                // Obfuscated: base64 of "piesimpviza"
+                const _k = atob("cGllc2ltcHZpemE=");
+                const tryUnlock = () => {
+                    if ((inp.val() as string) === _k) {
+                        (window as any).__devUnlocked = true;
+                        status.text("✓ Dev mode active").css("color", "#6f6");
+                        btn.text("Active").prop("disabled", true).css("opacity","0.6");
+                        inp.prop("disabled", true).css("opacity","0.6");
+                    } else {
+                        status.text("✗ Wrong passcode").css("color", "#f66");
+                        setTimeout(() => status.text(""), 1500);
+                    }
+                };
+                btn.on("click", tryUnlock);
+                inp.on("keydown", (e) => { if (e.key === "Enter") tryUnlock(); });
+            }
             this.nameInput.on("blur", (_t) => {
                 this.setConfigFromDOM();
             });
