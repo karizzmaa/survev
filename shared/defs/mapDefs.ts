@@ -3,7 +3,9 @@ import { Main } from "./maps/baseDefs";
 import { Beach } from "./maps/beachDefs";
 import { Birthday } from "./maps/birthdayDefs";
 import { Cobalt } from "./maps/cobaltDefs";
+import { CobaltBattle } from "./maps/cobaltBattleDefs";
 import { Desert } from "./maps/desertDefs";
+import { DesertSkirmish } from "./maps/desertSkirmishDefs";
 import { Faction } from "./maps/factionDefs";
 import { Halloween } from "./maps/halloweenDefs";
 import { MainSpring } from "./maps/mainSpringDefs";
@@ -41,6 +43,7 @@ export const MapDefs = {
     main_spring: MainSpring,
     main_summer: MainSummer,
     desert: Desert,
+    desert_skirmish: DesertSkirmish,
     faction: Faction,
     halloween: Halloween,
     potato: Potato,
@@ -52,6 +55,7 @@ export const MapDefs = {
     woods_summer: WoodsSummer,
     savannah: Savannah,
     cobalt: Cobalt,
+    cobalt_battle: CobaltBattle,
     turkey: Turkey,
     birthday: Birthday,
     beach: Beach,
@@ -118,6 +122,8 @@ export interface MapDef {
         perkModeRoles?: string[];
         turkeyMode?: boolean;
         spookyKillSounds?: boolean;
+        /** Players spawn with no weapons, armor, or loadout items */
+        nakedSpawn?: boolean;
     };
     gameConfig: {
         planes: {
