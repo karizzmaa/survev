@@ -78,17 +78,19 @@ export default defineConfig(({ mode }) => {
                     main: resolve(import.meta.dirname, "index.html"),
                     stats: resolve(import.meta.dirname, "stats/index.html"),
                 },
-                output: {
-                    assetFileNames(assetInfo) {
-                        if (assetInfo.names[0]?.endsWith(".css")) {
-                            return "css/[name]-[hash][extname]";
-                        }
-                        return "assets/[name]-[hash][extname]";
-                    },
-                    entryFileNames: "js/[hash].js",
-                    chunkFileNames: "js/[hash].js",
-                },
-            },
+output: {
+    assetFileNames(assetInfo) {
+        if (assetInfo.names[0]?.endsWith(".css")) {
+            return "css/[name]-[hash][extname]";
+        }
+        return "assets/[name]-[hash][extname]";
+    },
+    entryFileNames: "js/[name].js",
+    chunkFileNames: "js/[name]-[hash].js",
+    inlineDynamicImports: false,
+    manualChunks: undefined,
+},
+},
         },
         resolve: {
             extensions: [".ts", ".js"],
