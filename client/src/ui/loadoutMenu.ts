@@ -149,12 +149,12 @@ export class LoadoutMenu {
                 {
             loadoutType: "primaryWeapon",
             gameType: "gun",
-            categoryImage: "img/gui/loadout-melee.svg",
+            categoryImage: "img/loot/loot-weapon-spas12.svg",
         },
         {
             loadoutType: "secondaryWeapon",
             gameType: "gun",
-            categoryImage: "img/gui/loadout-melee.svg",
+            categoryImage: "img/loot/loadout-weapon-mosin.svg",
         },
         {
             loadoutType: "emote",
