@@ -155,6 +155,7 @@ export class LoadoutMenu {
             loadoutType: "secondaryWeapon",
             gameType: "gun",
             categoryImage: "img/gui/loadout-melee.svg",
+        },
         {
             loadoutType: "emote",
             gameType: "emote",
