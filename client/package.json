@@ -5,7 +5,7 @@
   "scripts": {
     "build": "vite build",
     "typecheck": "tsc --noEmit",
-    "dev": "vite dev",
+"dev": "vite build --watch --mode development",
     "preview": "vite preview",
     "lint": "cd .. && pnpm lint"
   },
