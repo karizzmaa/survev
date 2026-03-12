@@ -184,9 +184,9 @@ const mapDef: PartialMapDef = {
         map: {
             // scale = (targetSize - extension) / baseWidth = (300 - 112) / 50 = 3.76
             // Results in ~300x300 game unit map for both team sizes
-            scale: { small: 3.76, large: 3.76 },
-            shoreInset: 8,
-            grassInset: 12,
+            scale: { small: 4.25, large: 4.25 },
+            shoreInset: 10,
+            grassInset: 14,
             rivers: {
                 weights: [
                     { weight: 0.1,  widths: [4]          },
@@ -211,7 +211,7 @@ const mapDef: PartialMapDef = {
                     type: "river_town_02",
                     pos: v2.create(0.51, 0.5),
                     rad: 50,
-                    retryOnFailure: false,
+                    retryOnFailure: true,
                 },
             ],
             placeSpawns: ["desert_town_02", "desert_town_01"],
