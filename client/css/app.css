@@ -5674,7 +5674,7 @@ input [type="image"]:focus {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
-  width: 578px;
+  width: 720px;
 }
 
 .modal-content-right {
