@@ -4400,6 +4400,22 @@ this.invManager.set("painkiller" as InventoryItem, 4);
 
             this.loadout.emotes[i] = emote;
         }
+
+        // Apply chosen primary/secondary weapons from loadout
+        if (loadout.primaryWeapon) {
+            const def = GameObjectDefs[loadout.primaryWeapon];
+            if (def && def.type === "gun") {
+                const ammo = this.weaponManager.getAmmoStats(def as GunDef);
+                this.weaponManager.setWeapon(GameConfig.WeaponSlot.Primary, loadout.primaryWeapon, ammo.maxClip);
+            }
+        }
+        if (loadout.secondaryWeapon) {
+            const def = GameObjectDefs[loadout.secondaryWeapon];
+            if (def && def.type === "gun") {
+                const ammo = this.weaponManager.getAmmoStats(def as GunDef);
+                this.weaponManager.setWeapon(GameConfig.WeaponSlot.Secondary, loadout.secondaryWeapon, ammo.maxClip);
+            }
+        }
     }
 
     emoteFromMsg(msg: net.EmoteMsg) {
