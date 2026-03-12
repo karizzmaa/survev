@@ -161,16 +161,7 @@ export class LoadoutMenu {
             gameType: "boost_effect",
             categoryImage: "img/gui/loadout-boost.svg",
         },
-        {
-            loadoutType: "primaryWeapon",
-            gameType: "gun",
-            categoryImage: "img/gui/loadout-melee.svg",
-        },
-        {
-            loadoutType: "secondaryWeapon",
-            gameType: "gun",
-            categoryImage: "img/gui/loadout-melee.svg",
-        },
+
     ];
 
     selectedItem: {
@@ -231,6 +222,16 @@ export class LoadoutMenu {
             loadoutType: "player_icon",
             gameType: "emote",
             categoryImage: "img/gui/loadout-emote.svg",
+        });
+            this.categories.push({
+            loadoutType: "primaryWeapon",
+            gameType: "gun",
+            categoryImage: "img/gui/loadout-melee.svg",
+        });
+        this.categories.push({
+            loadoutType: "secondaryWeapon",
+            gameType: "gun",
+            categoryImage: "img/gui/loadout-melee.svg",
         });
 
         this.modalCustomize = $("#modal-customize");
