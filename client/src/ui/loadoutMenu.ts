@@ -146,6 +146,15 @@ export class LoadoutMenu {
             gameType: "melee",
             categoryImage: "img/gui/loadout-melee.svg",
         },
+                {
+            loadoutType: "primaryWeapon",
+            gameType: "gun",
+            categoryImage: "img/gui/loadout-melee.svg",
+        },
+        {
+            loadoutType: "secondaryWeapon",
+            gameType: "gun",
+            categoryImage: "img/gui/loadout-melee.svg",
         {
             loadoutType: "emote",
             gameType: "emote",
@@ -223,16 +232,7 @@ export class LoadoutMenu {
             gameType: "emote",
             categoryImage: "img/gui/loadout-emote.svg",
         });
-            this.categories.push({
-            loadoutType: "primaryWeapon",
-            gameType: "gun",
-            categoryImage: "img/gui/loadout-melee.svg",
-        });
-        this.categories.push({
-            loadoutType: "secondaryWeapon",
-            gameType: "gun",
-            categoryImage: "img/gui/loadout-melee.svg",
-        });
+
 
         this.modalCustomize = $("#modal-customize");
         this.modalCustomizeList = $("#modal-customize-list");
