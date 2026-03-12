@@ -923,15 +923,16 @@ export class LoadoutMenu {
         });
 
         // For weapon tabs, also include all guns from GameObjectDefs (not just unlocked items)
-        if (category.loadoutType === "primaryWeapon" || category.loadoutType === "secondaryWeapon") {
-            const existingTypes = new Set(loadoutItems.map((x) => x.type));
-            for (const [key, def] of Object.entries(GameObjectDefs)) {
-                if ((def as GunDef).type === "gun" && !existingTypes.has(key)) {
-                    loadoutItems.push({ type: key, source: "unlock_default", timeAcquired: 0 });
-                    existingTypes.add(key);
-                }
-            }
+if (category.loadoutType === "primaryWeapon" || category.loadoutType === "secondaryWeapon") {
+    const excludedGuns = ["bugle", "awc", "awc", "potato_smg", "pkp", "m249", "flare_gun", "flare_gun_dual", ];
+    const existingTypes = new Set(loadoutItems.map((x) => x.type));
+    for (const [key, def] of Object.entries(GameObjectDefs)) {
+        if ((def as GunDef).type === "gun" && !existingTypes.has(key) && !excludedGuns.includes(key)) {
+            loadoutItems.push({ type: key, source: "unlock_default", timeAcquired: 0 });
+            existingTypes.add(key);
         }
+    }
+}
 
         // Sort items based on currently selected sort
         const displaySubcatSort =
