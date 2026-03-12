@@ -925,7 +925,22 @@ if (this.categories[i].loadoutType == "player_icon") {
 
         // For weapon tabs, also include all guns from GameObjectDefs (not just unlocked items)
 if (category.loadoutType === "primaryWeapon" || category.loadoutType === "secondaryWeapon") {
-    const excludedGuns = ["bugle", "awc", "awc", "potato_smg", "pkp", "m249", "flare_gun", "flare_gun_dual", ];
+    const excludedGuns = [
+        "bugle", "potato_smg", "m9_cursed",
+        "awc", "awc_winter",
+        "sv98", "sv98_winter",
+        "scarssr",
+        "usas",
+        "pkp", "m249",
+        "flare_gun", "flare_gun_dual",
+    ];
+    // Remove excluded guns that are already in loadoutItems (e.g. from unlocked items)
+    for (let i = loadoutItems.length - 1; i >= 0; i--) {
+        if (excludedGuns.includes(loadoutItems[i].type)) {
+            loadoutItems.splice(i, 1);
+        }
+    }
+    // Add all non-excluded guns not already present
     const existingTypes = new Set(loadoutItems.map((x) => x.type));
     for (const [key, def] of Object.entries(GameObjectDefs)) {
         if ((def as GunDef).type === "gun" && !existingTypes.has(key) && !excludedGuns.includes(key)) {
