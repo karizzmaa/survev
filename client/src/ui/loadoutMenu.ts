@@ -273,7 +273,7 @@ export class LoadoutMenu {
                     class: "modal-customize-cat",
                     "data-idx": i,
                 });
-                if (i == this.categories.length - 1) {
+if (this.categories[i].loadoutType == "player_icon") {
                     r.attr("id", "modal-customize-cat-standalone");
                 }
                 r.append(
