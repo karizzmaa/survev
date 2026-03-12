@@ -1735,4 +1735,26 @@ export const EmotesDefs: Record<string, EmoteDef> = {
         teamOnly: false,
         category: EmoteCategory.Logos,
     },
+
+    emote_trollgumball: {
+        type: "emote",
+        name: "Troll Gumball",
+        rarity: Rarity.Mythic,
+        texture: "trollgumball.img",
+        sound: "emote_01",
+        channel: "ui",
+        teamOnly: false,
+        category: EmoteCategory.Other,
+    },
+
+    emote_freak: {
+        type: "emote",
+        name: "Freak",
+        rarity: Rarity.Mythic,
+        texture: "1479817317650006090.img",
+        sound: "emote_01",
+        channel: "ui",
+        teamOnly: false,
+        category: EmoteCategory.Other,
+    },
 };

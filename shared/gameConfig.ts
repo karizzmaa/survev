@@ -235,8 +235,8 @@ export const GameConfig = {
         "emote_thumbsup",
         "emote_surviv",
         "emote_sadface",
-        "",
-        "",
+        "emote_trollgumball",
+        "emote_freak",
     ],
     airdrop: {
         actionOffset: 0,

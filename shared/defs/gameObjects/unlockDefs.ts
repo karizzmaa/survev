@@ -60,6 +60,8 @@ const _allowedOutfits = [
 const _allowedEmotes = [
     // (all emotes from your list)
     "emote_thumbsup",
+    "emote_freak",
+    "emote_trollgumball",
     "emote_sadface",
     "emote_happyface",
     "emote_surviv",
