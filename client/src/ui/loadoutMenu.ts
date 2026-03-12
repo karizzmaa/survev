@@ -154,7 +154,7 @@ export class LoadoutMenu {
         {
             loadoutType: "secondaryWeapon",
             gameType: "gun",
-            categoryImage: "img/loot/loadout-weapon-mosin.svg",
+            categoryImage: "img/loot/loot-weapon-mosin.svg",
         },
         {
             loadoutType: "emote",
