@@ -45,8 +45,6 @@ export default defineConfig(({ mode }) => {
         port: Config.vite.port,
         host: Config.vite.host,
         proxy: {
-            // this redirects /stats to /stats/
-            // because vite is cringe and does not work without trailing slashes at the end of paths 😭
             "^/stats(?!/$).*": {
                 target: `http://${Config.vite.host}:${Config.vite.port}`,
                 rewrite: (path) => path.replace(/^\/stats(?!\/$).*/, "/stats/"),
@@ -73,24 +71,24 @@ export default defineConfig(({ mode }) => {
         build: {
             target: "es2022",
             chunkSizeWarningLimit: 2000,
+            modulePreload: { polyfill: false },
             rollupOptions: {
                 input: {
                     main: resolve(import.meta.dirname, "index.html"),
                     stats: resolve(import.meta.dirname, "stats/index.html"),
                 },
-output: {
-    assetFileNames(assetInfo) {
-        if (assetInfo.names[0]?.endsWith(".css")) {
-            return "css/[name]-[hash][extname]";
-        }
-        return "assets/[name]-[hash][extname]";
-    },
-    entryFileNames: "js/[name].js",
-    chunkFileNames: "js/[name]-[hash].js",
-    inlineDynamicImports: false,
-    manualChunks: undefined,
-},
-},
+                output: {
+                    assetFileNames(assetInfo) {
+                        if (assetInfo.names[0]?.endsWith(".css")) {
+                            return "css/[name]-[hash][extname]";
+                        }
+                        return "assets/[name]-[hash][extname]";
+                    },
+                    entryFileNames: "js/[name].js",
+                    chunkFileNames: "js/[name]-[hash].js",
+                    manualChunks: () => undefined,
+                },
+            },
         },
         resolve: {
             extensions: [".ts", ".js"],
