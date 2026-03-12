@@ -171,7 +171,7 @@ const mapDef: PartialMapDef = {
         tier_airdrop_melee: [
             { name: "",             count: 1, weight: 19 },
             { name: "stonehammer", count: 1, weight: 1  },
-            { name: "pan",         count: 1, weight: 1  },
+            { name: "pan",         count: 1, weight: 1.2  },
         ],
         tier_perks: [
             { name: "broken_arrow", count: 1, weight: 1 },
@@ -184,7 +184,7 @@ const mapDef: PartialMapDef = {
         map: {
             // scale = (targetSize - extension) / baseWidth = (300 - 112) / 50 = 3.76
             // Results in ~300x300 game unit map for both team sizes
-            scale: { small: 4.25, large: 4.25 },
+            scale: { small: 5, large: 5 },
             shoreInset: 10,
             grassInset: 14,
             rivers: {
