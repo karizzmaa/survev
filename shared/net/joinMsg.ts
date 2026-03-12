@@ -14,6 +14,8 @@ export class JoinMsg implements AbstractMsg {
         heal: "",
         boost: "",
         emotes: [] as string[],
+        primaryWeapon: "",
+        secondaryWeapon: "",
     };
 
     serialize(s: BitStream) {
@@ -36,6 +38,8 @@ export class JoinMsg implements AbstractMsg {
         s.writeArray(this.loadout.emotes, 8, (emote) => {
             s.writeGameType(emote);
         });
+        s.writeGameType(this.loadout.primaryWeapon);
+        s.writeGameType(this.loadout.secondaryWeapon);
     }
 
     deserialize(s: BitStream) {
@@ -56,5 +60,7 @@ export class JoinMsg implements AbstractMsg {
         this.loadout.emotes = s.readArray(8, () => {
             return s.readGameType();
         });
+        this.loadout.primaryWeapon = s.readGameType();
+        this.loadout.secondaryWeapon = s.readGameType();
     }
 }
