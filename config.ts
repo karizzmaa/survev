@@ -29,9 +29,9 @@ export function getConfig(isProduction: boolean, dir: string) {
         regions: {},
         proxies: {},
         modes: [
-            { mapName: "main", teamMode: TeamMode.Solo, enabled: true },
-            { mapName: "main", teamMode: TeamMode.Duo, enabled: false },
-            { mapName: "main", teamMode: TeamMode.Squad, enabled: false },
+            { mapName: "main",            teamMode: TeamMode.Solo,  enabled: true },
+            { mapName: "cobalt_battle",   teamMode: TeamMode.Duo,   enabled: true },
+            { mapName: "desert_skirmish", teamMode: TeamMode.Squad, enabled: true },
         ],
         clientTheme: "main",
         gameTps: 100,
