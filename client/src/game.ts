@@ -144,9 +144,8 @@ export class Game {
         this.m_inputBindUi = m_inputBindUi;
         this.m_resourceManager = m_resourceManager;
 
-        if (IS_DEV) {
-            this.editor = new Editor(this.m_config);
-        }
+        // Editor always initialized; toggling is gated by IS_DEV or runtime __devUnlocked
+        this.editor = new Editor(this.m_config);
     }
 
     tryJoinGame(
@@ -403,7 +402,7 @@ export class Game {
     update(dt: number) {
         this.debugHUD.m_update(dt, this);
 
-        if (IS_DEV) {
+        if (IS_DEV || (window as any).__devUnlocked) {
             if (this.m_input.keyPressed(Key.Tilde)) {
                 this.editor.setEnabled(!this.editor.enabled);
             }
@@ -813,7 +812,7 @@ export class Game {
         // Clear cached data
         this.m_ui2Manager.flushInput();
 
-        if (IS_DEV && this.editor.enabled && this.editor.sendMsg) {
+        if ((IS_DEV || (window as any).__devUnlocked) && this.editor.enabled && this.editor.sendMsg) {
             var msg = this.editor.getMsg();
             this.m_sendMessage(net.MsgType.Edit, msg);
             this.editor.postSerialization();
@@ -1277,7 +1276,7 @@ export class Game {
                         channel: "ui",
                     });
                 }
-                if (IS_DEV) {
+                if (IS_DEV || (window as any).__devUnlocked) {
                     if (this.editor.enabled) {
                         this.editor.sendMsg = true;
                     }
@@ -1311,7 +1310,7 @@ export class Game {
                     this.m_uiManager.setRoleMenuActive(false);
                 }
 
-                if (IS_DEV) {
+                if (IS_DEV || (window as any).__devUnlocked) {
                     this.editor.toolParams.mapSeed = msg.seed;
                     this.editor.pane.refresh();
                 }
