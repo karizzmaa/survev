@@ -1429,6 +1429,10 @@ export class Player extends BaseGameObject {
         for (const [item, amount] of Object.entries(defaultItems.inventory)) {
             this.invManager.set(item as InventoryItem, amount);
         }
+
+        const nakedSpawn = !!this.game.map.mapDef.gameMode.nakedSpawn;
+
+        if (!nakedSpawn) {
 // ── Custom spawn loadout ──────────────────────────────────────
 // Backpack first (required before inventory capacity applies)
 this.backpack = "backpack03";
@@ -1454,7 +1458,18 @@ this.invManager.set("healthkit" as InventoryItem, 3);
 this.invManager.set("soda" as InventoryItem, 15);
 this.invManager.set("painkiller" as InventoryItem, 4);
 // ─────────────────────────────────────────────────────────────
+        }
+
+        // Apply loadout (cosmetics etc.), then for nakedSpawn strip all weapons + armor
         this.setLoadout(loadout ? loadout : joinMsg.loadout, !loadout);
+
+        if (nakedSpawn) {
+            this.weaponManager.setWeapon(GameConfig.WeaponSlot.Primary,   "", 0);
+            this.weaponManager.setWeapon(GameConfig.WeaponSlot.Secondary,  "", 0);
+            this.helmet  = "";
+            this.chest   = "";
+            this.backpack = "backpack00";
+        }
 
         if (this.game.map.sniperMode) {
             this.invManager.give("2xscope", 1);
