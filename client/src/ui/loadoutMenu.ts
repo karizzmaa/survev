@@ -2,6 +2,7 @@ import "@taufik-nurrohman/color-picker";
 import $ from "jquery";
 import { GameObjectDefs } from "../../../shared/defs/gameObjectDefs";
 import { EmoteCategory, type EmoteDef } from "../../../shared/defs/gameObjects/emoteDefs";
+import type { GunDef } from "../../../shared/defs/gameObjects/gunDefs";
 import type { MeleeDef } from "../../../shared/defs/gameObjects/meleeDefs";
 import type { UnlockDef } from "../../../shared/defs/gameObjects/unlockDefs";
 import { EmoteSlot, Rarity } from "../../../shared/gameConfig";
@@ -159,6 +160,16 @@ export class LoadoutMenu {
             loadoutType: "boost",
             gameType: "boost_effect",
             categoryImage: "img/gui/loadout-boost.svg",
+        },
+        {
+            loadoutType: "primaryWeapon",
+            gameType: "gun",
+            categoryImage: "img/gui/loadout-melee.svg",
+        },
+        {
+            loadoutType: "secondaryWeapon",
+            gameType: "gun",
+            categoryImage: "img/gui/loadout-melee.svg",
         },
     ];
 
@@ -910,6 +921,17 @@ export class LoadoutMenu {
             return gameTypeDef && gameTypeDef.type == category.gameType;
         });
 
+        // For weapon tabs, also include all guns from GameObjectDefs (not just unlocked items)
+        if (category.loadoutType === "primaryWeapon" || category.loadoutType === "secondaryWeapon") {
+            const existingTypes = new Set(loadoutItems.map((x) => x.type));
+            for (const [key, def] of Object.entries(GameObjectDefs)) {
+                if ((def as GunDef).type === "gun" && !existingTypes.has(key)) {
+                    loadoutItems.push({ type: key, source: "unlock_default", timeAcquired: 0 });
+                    existingTypes.add(key);
+                }
+            }
+        }
+
         // Sort items based on currently selected sort
         const displaySubcatSort =
             category.loadoutType == "emote" || category.loadoutType == "player_icon";
@@ -941,9 +963,15 @@ export class LoadoutMenu {
         _.find(".modal-customize-cat-image").addClass(
             "modal-customize-cat-image-selected",
         );
-        const localizedTitle = this.localization
-            .translate(`loadout-title-${category.loadoutType}`)
-            .toUpperCase();
+        const weaponTabTitles: Record<string, string> = {
+            primaryWeapon: "PRIMARY WEAPON",
+            secondaryWeapon: "SECONDARY WEAPON",
+        };
+        const localizedTitle = (
+            this.localization.translate(`loadout-title-${category.loadoutType}`) ||
+            weaponTabTitles[category.loadoutType] ||
+            category.loadoutType
+        ).toUpperCase();
         $("#modal-customize-cat-title").html(localizedTitle);
         $("#modal-content-right-crosshair").css(
             "display",
