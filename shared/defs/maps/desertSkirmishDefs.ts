@@ -182,16 +182,22 @@ const mapDef: PartialMapDef = {
     },
     mapGen: {
         map: {
-            // Half scale
-            scale: { small: 0.6, large: 0.6 },
+            // scale = (targetSize - extension) / baseWidth = (300 - 112) / 50 = 3.76
+            // Results in ~300x300 game unit map for both team sizes
+            scale: { small: 3.76, large: 3.76 },
             shoreInset: 8,
-            grassInset: 10,
+            grassInset: 12,
             rivers: {
                 weights: [
-                    { weight: 0.3, widths: [8, 4] },
-                    { weight: 0.7, widths: [8]    },
+                    { weight: 0.1,  widths: [4]          },
+                    { weight: 0.15, widths: [8]          },
+                    { weight: 0.25, widths: [8, 4]       },
+                    { weight: 0.21, widths: [8]          },
+                    { weight: 0.09, widths: [8, 8]       },
+                    { weight: 0.2,  widths: [8, 8, 4]    },
+                    { weight: 1e-4, widths: [8, 8, 8, 6, 4] },
                 ],
-                masks: [{ pos: v2.create(0.5, 0.5), rad: 50 }],
+                masks: [{ pos: v2.create(0.5, 0.5), rad: 80 }],
             },
         },
         places: [
@@ -200,36 +206,43 @@ const mapDef: PartialMapDef = {
             { name: "Atonement",  pos: v2.create(0.75, 0.35) },
         ],
         customSpawnRules: {
-            locationSpawns: [],
-            placeSpawns: ["desert_town_01"],
+            locationSpawns: [
+                {
+                    type: "river_town_02",
+                    pos: v2.create(0.51, 0.5),
+                    rad: 50,
+                    retryOnFailure: false,
+                },
+            ],
+            placeSpawns: ["desert_town_02", "desert_town_01"],
         },
-        // ~Half density
+        // Density scaled for ~300x300 (~64% of full desert's 1.1875 scale area)
         densitySpawns: [
             {
-                stone_01:    125,
-                barrel_01:   35,
-                silo_01:     2,
-                crate_01:    22,
-                crate_03:    4,
-                bush_01:     42,
-                tree_06:     100,
-                tree_05c:    65,
-                tree_09:     18,
-                hedgehog_01: 6,
-                container_01: 2,
-                container_02: 2,
-                container_03: 2,
-                container_04: 2,
-                shack_01:    4,
-                outhouse_01: 2,
-                loot_tier_1: 12,
-                loot_tier_beach: 2,
+                stone_01:    180,
+                barrel_01:   48,
+                silo_01:     3,
+                crate_01:    32,
+                crate_03:    5,
+                bush_01:     58,
+                tree_06:     140,
+                tree_05c:    92,
+                tree_09:     26,
+                hedgehog_01: 8,
+                container_01: 3,
+                container_02: 3,
+                container_03: 3,
+                container_04: 3,
+                shack_01:    5,
+                outhouse_01: 3,
+                loot_tier_1: 16,
+                loot_tier_beach: 3,
             },
         ],
-        // Fewer fixed structures — removed 1-2 houses
+        // Scaled fixed spawns — removed 1-2 houses vs full desert
         fixedSpawns: [
             {
-                warehouse_01:        2,               // ↓ from 4
+                warehouse_01:        3,               // ↓ from 4
                 house_red_01:        2,               // ↓ from 3
                 house_red_02:        1,
                 barn_01:             1,
@@ -241,11 +254,12 @@ const mapDef: PartialMapDef = {
                 chest_01:            1,
                 chest_03d:           { odds: 1 },
                 mil_crate_02:        { odds: 0.25 },
-                crate_18:            5,               // ↓ from 12
-                tree_02:             2,               // ↓ from 3
+                crate_18:            8,               // ↓ from 12
+                tree_02:             2,
                 desert_town_01:      1,
+                desert_town_02:      1,
                 greenhouse_02:       1,
-                stone_05:            3,               // ↓ from 6
+                stone_05:            4,               // ↓ from 6
             },
         ],
         randomSpawns: [],
@@ -258,7 +272,7 @@ const mapDef: PartialMapDef = {
                 stone_03: "stone_03b",
             },
         ],
-        importantSpawns: ["desert_town_01"],
+        importantSpawns: ["desert_town_01", "desert_town_02", "river_town_02"],
     },
     /* STRIP_FROM_PROD_CLIENT:END */
 };
