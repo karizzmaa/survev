@@ -26,6 +26,8 @@ export const loadoutSchema = z.object({
         stroke: z.string(),
     }),
     emotes: z.array(z.string()).length(6),
+    primaryWeapon: z.string().optional().default("mosin"),
+    secondaryWeapon: z.string().optional().default("spas12"),
 });
 
 export type Loadout = z.infer<typeof loadoutSchema>;
@@ -72,6 +74,8 @@ export const loadout = {
             heal: getGameType("heal_effect", mergedLoadout.heal, "heal_basic"),
             boost: getGameType("boost_effect", mergedLoadout.boost, "boost_basic"),
             player_icon: getGameType("emote", mergedLoadout.player_icon, ""),
+            primaryWeapon: getGameType("gun", mergedLoadout.primaryWeapon ?? "mosin", "mosin"),
+            secondaryWeapon: getGameType("gun", mergedLoadout.secondaryWeapon ?? "spas12", "spas12"),
             crosshair: {
                 type: getGameType(
                     "crosshair",
