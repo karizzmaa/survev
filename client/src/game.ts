@@ -402,7 +402,7 @@ export class Game {
     update(dt: number) {
         this.debugHUD.m_update(dt, this);
 
-        if ((IS_DEV || (window as any).__devUnlocked) && this.initialized) {
+        if ((window as any).__devUnlocked && this.initialized) {
             if (this.m_input.keyPressed(Key.Tilde)) {
                 this.editor.setEnabled(!this.editor.enabled);
             }
