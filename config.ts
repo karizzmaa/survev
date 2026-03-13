@@ -34,8 +34,8 @@ export function getConfig(isProduction: boolean, dir: string) {
             { mapName: "desert_skirmish", teamMode: TeamMode.Squad, enabled: true },
         ],
         clientTheme: "main",
-        gameTps: 100,
-        netSyncTps: 33,
+        gameTps: 50,
+        netSyncTps: 20,
         processMode: isDev ? "single" : "multi",
         logging: {
             logDate: true,
