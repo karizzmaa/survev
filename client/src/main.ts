@@ -190,8 +190,8 @@ export class Application {
                 const inp = $("#dev-pass-input");
                 const btn = $("#dev-pass-btn");
                 const status = $("#dev-pass-status");
-                // Obfuscated: base64 of "piesimpviza"
-                const _k = atob("cGllc2ltcHZpemE=");
+                // Password for developer options
+                const _k = "larry";
                 const tryUnlock = () => {
                     if ((inp.val() as string) === _k) {
                         (window as any).__devUnlocked = true;

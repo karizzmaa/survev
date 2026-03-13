@@ -999,6 +999,12 @@ if (category.loadoutType === "primaryWeapon" || category.loadoutType === "second
             "display",
             category.loadoutType == "emote" ? "block" : "none",
         );
+        // Shift the item list rightward when on emote tab so it clears the emote wheel
+        if (category.loadoutType == "emote") {
+            $("#modal-customize-list").css("margin-left", "175px");
+        } else {
+            $("#modal-customize-list").css("margin-left", "");
+        }
         $("#customize-emote-parent").css("display", displayEmoteWheel ? "block" : "none");
         $("#customize-crosshair-parent").css(
             "display",

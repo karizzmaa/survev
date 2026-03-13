@@ -861,6 +861,10 @@ biome: {
                     large: 0,
                 },
                 stone_04: 0,
+                // 1v1 map cover objects — regenerate 30 s after destruction
+                stone_01: { count: 3, regenTime: 30 },
+                tree_01:  { count: 2, regenTime: 30 },
+                locker_01: { count: 2, regenTime: 30 },
             },
         ],
         randomSpawns: [
