@@ -60,6 +60,18 @@ const _allowedOutfits = [
 const _allowedEmotes = [
     // (all emotes from your list)
     "emote_thumbsup",
+    "emote_realskull",
+    "emote_nomercy",
+    "emote_thonk",
+    "emote_survetomy",
+    "emote_flattered",
+    "emote_extracasso",
+    "emote_eepyface",
+    "emote_deercasso",
+    "emote_boffysad",
+    "emote_boffyneutral",
+    "emote_awwmysurvev",
+    "emote_hotstufface",
     "emote_freak",
     "emote_trollgumball",
     "emote_sadface",
