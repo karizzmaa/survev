@@ -807,7 +807,7 @@ biome: {
         },
         densitySpawns: [
             {
-                stone_01: 12,       // some icy boulders for cover
+                stone_01: 0,        // handled in fixedSpawns with regen
                 barrel_01: 0,
                 silo_01: 0,
                 crate_01: 0,

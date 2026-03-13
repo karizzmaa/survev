@@ -422,6 +422,11 @@ export class Obstacle extends BaseGameObject {
             this.regrowTicker = def.regrowTimer;
         }
 
+        // Regen timer set by map for fixedSpawns with regenTime
+        if ((this as any)._mapRegenTime !== undefined && this.regrowTicker === 0) {
+            this.regrowTicker = (this as any)._mapRegenTime;
+        }
+
         const lootPos = v2.copy(this.pos);
         if (def.lootSpawn) {
             v2.set(lootPos, v2.add(this.pos, v2.rotate(def.lootSpawn.offset, this.rot)));

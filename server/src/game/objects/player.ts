@@ -1471,6 +1471,19 @@ this.invManager.set("painkiller" as InventoryItem, 4);
             this.backpack = "backpack00";
         }
 
+        // ── Spawn grenades (all modes, including nakedSpawn) ──────────────
+        // Full adrenaline bar at spawn (drains naturally; not permanent)
+        this.boost = 100;
+        this.boostDirty = true;
+
+        // Give frag grenades, mirvs, and snowballs — but NOT strobes
+        if (!nakedSpawn) {
+            this.invManager.set("frag" as InventoryItem, 2);
+            this.invManager.set("mirv" as InventoryItem, 1);
+            this.invManager.set("snowball" as InventoryItem, 3);
+        }
+        // ─────────────────────────────────────────────────────────────────
+
         if (this.game.map.sniperMode) {
             this.invManager.give("2xscope", 1);
         }
