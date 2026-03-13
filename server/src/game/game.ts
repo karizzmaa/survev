@@ -473,7 +473,19 @@ export class Game {
                 break;
             }
             case net.MsgType.DropItem: {
-                player.dropItem(msg as net.DropItemMsg);
+                const dropMsg = msg as net.DropItemMsg;
+                if (dropMsg.item === "__quit__") {
+                    // Player voluntarily quit — kill them with no loot drop
+                    if (!player.dead) {
+                        player.voluntaryQuit = true;
+                        player.kill({
+                            damageType: GameConfig.DamageType.Bleeding,
+                            dir: player.dir,
+                        });
+                    }
+                } else {
+                    player.dropItem(dropMsg);
+                }
                 break;
             }
             case net.MsgType.Spectate: {

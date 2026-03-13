@@ -862,9 +862,10 @@ biome: {
                 },
                 stone_04: 0,
                 // 1v1 map cover objects — regenerate 30 s after destruction
-                stone_01: { count: 3, regenTime: 30 },
-                tree_01:  { count: 2, regenTime: 30 },
-                locker_01: { count: 2, regenTime: 30 },
+                stone_01:    { count: 6, regenTime: 30 },
+                tree_01:     { count: 4, regenTime: 30 },
+                barrel_01:   { count: 2, regenTime: 30 },
+                hedgehog_01: { count: 3, regenTime: 30 },
             },
         ],
         randomSpawns: [

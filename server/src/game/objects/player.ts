@@ -818,6 +818,7 @@ export class Player extends BaseGameObject {
     layer: number;
     aimLayer = 0;
     dead = false;
+    voluntaryQuit = false;
     downed = false;
 
     downedCount = 0;
@@ -3104,6 +3105,7 @@ this.invManager.set("painkiller" as InventoryItem, 4);
         // drop loot
         //
 
+        if (!this.voluntaryQuit) {
         for (let i = 0; i < GameConfig.WeaponSlot.Count; i++) {
             const weap = this.weapons[i];
             if (!weap.type) continue;
@@ -3163,6 +3165,7 @@ this.invManager.set("painkiller" as InventoryItem, 4);
                 );
             }
         }
+        } // end !voluntaryQuit loot drop
         this._perks.length = 0;
         this._perkTypes.length = 0;
 

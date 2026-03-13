@@ -5,6 +5,7 @@ import { PingDefs } from "../../../shared/defs/gameObjects/pingDefs";
 import { type RoleDef, RoleDefs } from "../../../shared/defs/gameObjects/roleDefs";
 import type { MapDef } from "../../../shared/defs/mapDefs";
 import { Action, GameConfig, GasMode, TeamMode } from "../../../shared/gameConfig";
+import * as net from "../../../shared/net/net";
 import type { PlayerStatsMsg } from "../../../shared/net/playerStatsMsg";
 import type { MapIndicator, PlayerStatus } from "../../../shared/net/updateMsg";
 import { coldet } from "../../../shared/utils/coldet";
@@ -378,6 +379,13 @@ export class UiManager {
             e.stopPropagation();
         });
         $("#btn-game-quit").on("click", () => {
+            // Signal server to kill this player with no loot drop
+            if (this.game.m_playing && !this.game.m_gameOver) {
+                const quitMsg = new net.DropItemMsg();
+                quitMsg.item = "__quit__";
+                quitMsg.weapIdx = 0;
+                this.game.m_sendMessage(net.MsgType.DropItem, quitMsg, 128);
+            }
             this.game.m_updatePass = true;
             this.game.m_updatePassDelay = 1;
             this.quitGame();

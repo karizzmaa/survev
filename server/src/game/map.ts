@@ -1553,16 +1553,18 @@ export class GameMap {
             }
         }
 
+        let spawnedObstacle: ReturnType<typeof this.genAuto> | undefined;
         this.trySpawn(type, () => {
             const { ori, scale } = this.getOriAndScale(type);
             const spawnAabb = getSpawnAabb(ori, scale);
             const pos = getPos(spawnAabb);
 
             if (!this.canSpawn(type, pos, ori, scale)) return false;
-            this.genAuto(type, pos, 0, ori, scale);
+            spawnedObstacle = this.genAuto(type, pos, 0, ori, scale);
 
             return true;
         });
+        return spawnedObstacle;
     }
 
     genOnBeach(type: string) {

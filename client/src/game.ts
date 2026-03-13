@@ -1108,11 +1108,24 @@ export class Game {
         }
         // Update player infos
         for (let i = 0; i < msg.playerInfos.length; i++) {
-            this.m_playerBarn.setPlayerInfo(msg.playerInfos[i]);
+            const info = msg.playerInfos[i];
+            const isNew = !this.m_playerBarn.playerInfo[info.playerId];
+            this.m_playerBarn.setPlayerInfo(info);
+            // Show join message for players other than ourselves
+            if (isNew && info.playerId !== this.m_localId && this.m_localId !== 0) {
+                const joinName = info.name || `Player${info.playerId - 2750}`;
+                this.m_ui2Manager.addKillFeedMessage(`${joinName} Joined`, "#aaffaa");
+            }
         }
         // Delete player infos
         for (let i = 0; i < msg.deletedPlayerIds.length; i++) {
             const playerId = msg.deletedPlayerIds[i];
+            // Show leave message for players other than ourselves
+            if (playerId !== this.m_localId) {
+                const leaveInfo = this.m_playerBarn.getPlayerInfo(playerId);
+                const leaveName = leaveInfo.name || leaveInfo.anonName || `Player${playerId - 2750}`;
+                this.m_ui2Manager.addKillFeedMessage(`${leaveName} Left`, "#ffaaaa");
+            }
             this.m_playerBarn.deletePlayerInfo(playerId);
         }
         if (msg.playerInfos.length > 0 || msg.deletedPlayerIds.length > 0) {
