@@ -772,6 +772,7 @@ export class GameMap {
         type MapSpawn = {
             type: string;
             count: number;
+            regenTime?: number;
             customRule?: {
                 type: "location";
                 pos: Vec2;
@@ -825,9 +826,13 @@ export class GameMap {
 
         for (const type in mapGen.fixedSpawns[0]) {
             let count = mapGen.fixedSpawns[0][type];
+            let regenTime: number | undefined;
             if (typeof count !== "number") {
                 if ("small" in count) {
                     count = count[this.scale];
+                } else if ("count" in count && "regenTime" in count) {
+                    regenTime = (count as { count: number; regenTime: number }).regenTime;
+                    count = (count as { count: number; regenTime: number }).count;
                 } else {
                     count = Math.random() < count.odds ? 1 : 0;
                 }
@@ -838,11 +843,13 @@ export class GameMap {
                 objsToSpawn.stage1.push({
                     type,
                     count,
+                    regenTime,
                 });
             } else {
                 objsToSpawn.stage2.push({
                     type,
                     count,
+                    regenTime,
                 });
             }
         }
@@ -873,7 +880,7 @@ export class GameMap {
 
         const genSpawn = (spawn: MapSpawn, firstStage: boolean) => {
             if (!spawn.customRule) {
-                this.genFromMapDef(spawn.type, spawn.count);
+                this.genFromMapDef(spawn.type, spawn.count, spawn.regenTime);
                 return;
             }
 
@@ -1007,10 +1014,11 @@ export class GameMap {
         this.genFromMapDef(type, count);
     }
 
-    genFromMapDef(type: string, count: number): void {
+    genFromMapDef(type: string, count: number, regenTime?: number): void {
         for (let i = 0; i < count; i++) {
             const def = MapObjectDefs[type];
 
+            let obstacle: Obstacle | undefined;
             if (def.terrain?.waterEdge) {
                 this.genOnWaterEdge(type);
             } else if (def.terrain?.river) {
@@ -1020,13 +1028,22 @@ export class GameMap {
             } else if (def.terrain?.lakeCenter) {
                 this.genOnLakeCenter(type);
             } else if (def.terrain?.grass) {
-                this.genOnGrass(type);
+                obstacle = this.genOnGrass(type) as Obstacle | undefined;
             } else if (def.terrain?.beach) {
                 this.genOnBeach(type);
             } else if (def.terrain?.riverShore) {
                 this.genOnRiverShore(type);
             } else {
-                this.genOnGrass(type);
+                obstacle = this.genOnGrass(type) as Obstacle | undefined;
+            }
+
+            // Apply regen timer if requested
+            if (regenTime !== undefined && obstacle) {
+                (obstacle as any)._mapRegenTime = regenTime;
+                obstacle.isDynamic = true;
+                if (!this.dynamicObstacles.includes(obstacle)) {
+                    this.dynamicObstacles.push(obstacle);
+                }
             }
         }
     }
