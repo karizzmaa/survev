@@ -3,6 +3,7 @@ import type { RoleDef } from "./gameObjects/roleDefs.ts";
 import { Main } from "./maps/baseDefs.ts";
 import { Beach } from "./maps/beachDefs.ts";
 import { Birthday } from "./maps/birthdayDefs.ts";
+import { Long } from "./maps/longDefs.ts";
 import { Cobalt } from "./maps/cobaltDefs.ts";
 import { Desert } from "./maps/desertDefs.ts";
 import { Faction } from "./maps/factionDefs.ts";
@@ -54,6 +55,7 @@ const _MapDefs = {
     woods_spring: WoodsSpring,
     woods_summer: WoodsSummer,
     savannah: Savannah,
+    long: Long,
     cobalt: Cobalt,
     turkey: Turkey,
     birthday: Birthday,
