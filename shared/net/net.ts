@@ -6,7 +6,7 @@ import { assert } from "../utils/util.ts";
 import type { Vec2 } from "../utils/v2.ts";
 
 export const Constants = {
-    MaxPosition: 1024,
+    MaxPosition: 2048,
     MapNameMaxLen: 24,
     PlayerNameMaxLen: 16,
     MouseMaxDist: 64,
